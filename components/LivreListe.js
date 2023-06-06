@@ -6,7 +6,8 @@ import {
   Image,
   StyleSheet,
   TextInput,
-  Button
+  Button,
+  TouchableOpacity
 } from "react-native";
 import { LIVRES, CATEGORIES } from "../models/data.js";
 
@@ -18,7 +19,11 @@ const LivreListe = ({ navigation }) => {
   );
 
   const ajouterLivre = () => {
-    navigation.navigate('CreerLivre');
+    navigation.navigate("CreerLivre");
+  };
+
+  const handleNaviguerCategories = () => {
+    navigation.navigate("Catégories");
   };
 
   const renderItem = ({ item }) => (
@@ -40,24 +45,15 @@ const LivreListe = ({ navigation }) => {
           onChangeText={(text) => setSearchQuery(text)}
           value={searchQuery}
         />
-        <FlatList
-          data={CATEGORIES}
-          horizontal
-          renderItem={({ item }) => (
-            <Text
-              style={styles.category}
-              onPress={() =>
-                navigation.navigate("LivresParCategorie", {
-                  categorieId: item.id,
-                })
-              }
-            >
-              {item.genre}
-            </Text>
-          )}
-          keyExtractor={(item) => item.id}
-        />
-        <Button title="Ajouter un livre" onPress={ajouterLivre} />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleNaviguerCategories}
+        >
+          <Text style={styles.buttonText}>Catégorie</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={ajouterLivre}>
+          <Text style={styles.buttonText}>Ajouter un livre</Text>
+        </TouchableOpacity>
       </View>
       <FlatList
         data={filteredLivres}
@@ -71,40 +67,15 @@ const LivreListe = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    paddingVertical: 16,
+    backgroundColor: '#fff',
     paddingHorizontal: 16,
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 16,
-  },
-  searchInput: {
-    flex: 1,
-    height: 40,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    paddingHorizontal: 16,
-  },
-  category: {
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 16,
-    backgroundColor: "#f5a442",
-    marginHorizontal: 8,
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
   },
   livreContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    borderBottomColor: '#ccc',
   },
   livreImage: {
     width: 80,
@@ -116,12 +87,32 @@ const styles = StyleSheet.create({
   },
   livreTitre: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 8,
   },
   livreDescription: {
     fontSize: 14,
-    color: "#888",
+    color: '#888',
+  },
+  button: {
+    backgroundColor: '#f5a442',
+    borderRadius: 10,
+    paddingVertical: 12,
+    marginBottom: 16,
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  searchInput: {
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    marginBottom: 16,
   },
 });
 
