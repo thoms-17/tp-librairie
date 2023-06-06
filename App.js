@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import ListeCategoriesScreen from './components/ListeCategoriesScreen';
 import LivresParCategorieScreen from './components/LivresParCategorieScreen';
+import CreerLivreScreen from './components/CreerLivreScreen';
 
 import LivreListe from './components/LivreListe';
 
@@ -19,6 +20,7 @@ const App = () => {
         <Stack.Screen name="Livres" component={LivreListe} />
         <Stack.Screen name="Catégories" component={ListeCategoriesScreen} />
         <Stack.Screen name="LivresParCategorie" component={LivresParCategorieScreen} />
+        <Stack.Screen name="CreerLivre" component={CreerLivreScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

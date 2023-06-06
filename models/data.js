@@ -8,7 +8,7 @@ export const CATEGORIES = [
   new Categorie('c4', 'romance', '#f5d142'),
 ];
 
-export const LIVRES = [
+export let LIVRES = [
   new Livre(
     'm1',
     ['c2'],

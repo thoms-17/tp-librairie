@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   TextInput,
+  Button
 } from "react-native";
 import { LIVRES, CATEGORIES } from "../models/data.js";
 
@@ -15,6 +16,10 @@ const LivreListe = ({ navigation }) => {
   const filteredLivres = LIVRES.filter((livre) =>
     livre.titre.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const ajouterLivre = () => {
+    navigation.navigate('CreerLivre');
+  };
 
   const renderItem = ({ item }) => (
     <View style={styles.livreContainer}>
@@ -52,6 +57,7 @@ const LivreListe = ({ navigation }) => {
           )}
           keyExtractor={(item) => item.id}
         />
+        <Button title="Ajouter un livre" onPress={ajouterLivre} />
       </View>
       <FlatList
         data={filteredLivres}
